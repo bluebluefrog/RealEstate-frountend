@@ -35,6 +35,7 @@ export const HomePage: React.FC = () => {
         dispatch(getRecommendProducts({page: 1, pageSize: 10, keyWord:keywords}));
     },[location])
 
+
     if (loading) {
         return (
             <Spin
@@ -49,48 +50,54 @@ export const HomePage: React.FC = () => {
             />
         );
     }
+
+
     if (error) {
         return <div>web error：{error}</div>;
     }
 
+    if (propertyList.rows.length < 10) {
+        return <div>web data missing：{error}</div>;
+    }
+
     return (
-      <MainLayout>
-        <Row style={{ marginTop: 20 }}>
-          <Col span={6}>
-            <SideMenu />
-          </Col>
-          <Col span={18}>
-            <Carousel />
-          </Col>
-        </Row>
-        <ProductCollection
-          title={
-            <Typography.Title level={3} type="warning">
-              new
-            </Typography.Title>
-          }
-          sideImage={sideImage}
-          products={propertyList.rows}
-        />
-        <ProductCollection
-          title={
-            <Typography.Title level={3} type="danger">
-              expolre
-            </Typography.Title>
-          }
-          sideImage={sideImage2}
-          products={propertyList.rows}
-        />
-        <ProductCollection
-          title={
-            <Typography.Title level={3} type="success">
-              populour
-            </Typography.Title>
-          }
-          sideImage={sideImage3}
-          products={propertyList.rows}
-        />
-      </MainLayout>
+        <MainLayout>
+            <Row style={{marginTop: 20}}>
+                <Col span={6}>
+                    <SideMenu/>
+                </Col>
+                <Col span={18}>
+                    <Carousel/>
+                </Col>
+            </Row>
+            <ProductCollection
+                title={
+                    <Typography.Title level={3} type="warning">
+                        new
+                    </Typography.Title>
+                }
+                sideImage={sideImage}
+                products={propertyList.rows.slice(0, 10)}
+            />
+            <ProductCollection
+                title={
+                    <Typography.Title level={3} type="danger">
+                        popular
+                    </Typography.Title>
+                }
+                sideImage={sideImage2}
+                products={propertyList.rows.length < 20 ? propertyList.rows.slice(0, 10) : propertyList.rows.slice(11, 21)}
+            />
+            <ProductCollection
+                title={
+                    <Typography.Title level={3} type="success">
+                        explore
+                    </Typography.Title>
+                }
+                sideImage={sideImage3}
+                products={propertyList.rows.length < 30 ? propertyList.rows.slice(0, 10) : propertyList.rows.slice(22, 32)}
+            />
+        </MainLayout>
     );
 
 }

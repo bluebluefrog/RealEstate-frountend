@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {port} from "../../AppConfig";
 
 interface RecommendProductsState {
     loading: boolean;
@@ -20,7 +21,7 @@ export const getRecommendProducts = createAsyncThunk(
         pageSize:number,
         keyWord: string;
     }, thunkAPI) => {
-        let url = `http://127.0.0.1:8080/property/list?page=${params.page}&pageSize=${params.pageSize}&keyWord=`;
+        let url = `${port}/property/list?page=${params.page}&pageSize=${params.pageSize}&keyWord=`;
         if (params.keyWord) {
             url += params.keyWord;
         }

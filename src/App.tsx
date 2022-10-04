@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./App.module.css";
-import {HomePage} from "./pages";
+import {DetailPage, HomePage, SearchPage} from "./pages";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 function App() {
@@ -9,7 +9,9 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={HomePage} />
-                    <Route render={() => <h1>404 not found 页面去火星了 ！</h1>} />
+                    <Route exact path="/search/:keywords?" component={SearchPage} />
+                    <Route exact path="/detail/:propertyId?" component={DetailPage} />
+                    <Route render={() => <h1>404 not found!</h1>} />
                 </Switch>
             </BrowserRouter>
         </div>
