@@ -21,7 +21,7 @@ export const getRecommendProducts = createAsyncThunk(
         pageSize:number,
         keyWord: string;
     }, thunkAPI) => {
-        let url = `${port}/property/list?page=${params.page}&pageSize=${params.pageSize}&keyWord=`;
+        let url = port+`property/list?page=${params.page}&pageSize=${params.pageSize}&keyWord=`;
         if (params.keyWord) {
             url += params.keyWord;
         }

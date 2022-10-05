@@ -4,6 +4,9 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import {Link, useHistory, useLocation, useParams, useRouteMatch} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {logout} from "../../redux/user/slice";
+
+import { useSelector } from "../../redux/hooks";
 
 export const Header: React.FC = () => {
     const history = useHistory();
@@ -11,6 +14,69 @@ export const Header: React.FC = () => {
     const params = useParams();
     const match = useRouteMatch();
     const dispatch = useDispatch();
+    let userInfo = useSelector(state => state.user.userInfo);
+
+    const clickLogout = () => {
+        dispatch(logout());
+        history.push("/");
+    };
+
+    const checkLogin = (): boolean => {
+        if (userInfo == null) {
+            alert("need login first!")
+            return false;
+        }
+        return true;
+    };
+
+    const watchList = () => {
+        if(checkLogin()){
+            history.push("/watchList");
+        }else{
+            return;
+        }
+    };
+
+    const wallet = () => {
+        if(checkLogin()){
+            history.push("/wallet");
+        }else{
+            return;
+        }
+    };
+
+    const auctionHistory = () => {
+        if(checkLogin()){
+            history.push("/auctionHistory");
+        }else{
+            return;
+        }
+    };
+
+    const personInfo = () => {
+        if(checkLogin()){
+            history.push("/personInfo");
+        }else{
+            return;
+        }
+    };
+
+    const createAuction = () => {
+        if(checkLogin()){
+            history.push("/createAuction");
+        }else{
+            return;
+        }
+    };
+
+    const uploadProperty = () => {
+        if(checkLogin()){
+            history.push("/uploadProperty");
+        }else{
+            return;
+        }
+    };
+
     return (
         <div className={styles['app-header']}>
             {/* top-header */}
@@ -29,11 +95,15 @@ export const Header: React.FC = () => {
                     >
                         Language
                     </Dropdown.Button>
-                    <Button.Group className={styles['botton-group']}>
-                        <Button>Register</Button>
-                        <Button>Login</Button>
-                        <Button>Logout</Button>
-                    </Button.Group>
+                    {userInfo==null?
+                        (<Button.Group className={styles['botton-group']}>
+                        <Button onClick={()=>{history.push("/register")}}>Register</Button>
+                        <Button onClick={()=>{history.push("/sign")}}>Login</Button>
+                    </Button.Group>)
+                    :(<Button.Group className={styles['botton-group']}>
+                            <Typography.Text strong>Welcome to RE {userInfo.username}</Typography.Text>
+                            <Button onClick={clickLogout}>Logout</Button>
+                        </Button.Group>)}
                 </div>
             </div>
             <Layout.Header className={styles['main-header']}>
@@ -46,12 +116,12 @@ export const Header: React.FC = () => {
             <Menu mode={"horizontal"} className={styles['main-menu']}>
                 <Menu.Item key={1}><Link to={"/"}>Home</Link></Menu.Item>
                 <Menu.Item key={2}><Link to={"/search"}>Property</Link></Menu.Item>
-                <Menu.Item key={3}>Auction History</Menu.Item>
-                <Menu.Item key={4}>Watch List</Menu.Item>
-                <Menu.Item key={5}>Wallet</Menu.Item>
-                <Menu.Item key={6}>Personal Info</Menu.Item>
-                <Menu.Item key={7}>Create Auction</Menu.Item>
-                <Menu.Item key={8}>Upload Property</Menu.Item>
+                <Menu.Item key={3} onClick={auctionHistory}>Auction History</Menu.Item>
+                <Menu.Item key={4} onClick={auctionHistory}>Watch List</Menu.Item>
+                <Menu.Item key={5} onClick={wallet}>Wallet</Menu.Item>
+                <Menu.Item key={6} onClick={personInfo}>Personal Info</Menu.Item>
+                <Menu.Item key={7} onClick={createAuction}>Create Auction</Menu.Item>
+                <Menu.Item key={8} onClick={uploadProperty}>Upload Property</Menu.Item>
             </Menu>
         </div>
     );

@@ -2,11 +2,15 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {recommendProductsSlice} from "./recommendProducts/slice";
 import {productSearchSlice} from "./productSearch/slice";
 import {propertyDetailSlice} from "./productDetail/slice";
+import {userSlice} from "./user/slice";
+import {auctionHistorySlice} from "./auctionHistory/slice";
 
 const rootReducer = combineReducers({
     recommendProducts: recommendProductsSlice.reducer,
     productSearch: productSearchSlice.reducer,
-    propertyDetail:propertyDetailSlice.reducer
+    propertyDetail:propertyDetailSlice.reducer,
+    user: userSlice.reducer,
+    auctionHistory: auctionHistorySlice.reducer,
 
 })
 
