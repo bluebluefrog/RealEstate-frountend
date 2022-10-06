@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { List, Rate, Space, Image, Tag, Typography } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-import {port} from "../../AppConfig";
+import {Link, useHistory} from "react-router-dom";
+import {List, Space, Image, Tag, Typography} from "antd";
+import {DeleteOutlined, StarOutlined} from "@ant-design/icons";
+import {addWatchList, deleteWatchList} from "../../redux/watchList/slice";
+import { useDispatch } from "react-redux";
 
 const { Text } = Typography;
 
@@ -49,11 +50,6 @@ const listData = (productList: Product[]) =>
 
   }));
 
-const addWatchList = () => {
-
-    alert("add")
-};
-
 const IconText = ({ icon, text }) => (
   <Space>
     {React.createElement(icon)}
@@ -66,7 +62,12 @@ export const ProductList: React.FC<PropsType> = ({
   paging,
   onPageChange,
 }) => {
-  const products = listData(data);
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+
+    const products = listData(data);
+
     return (
         <List
             itemLayout="vertical"
@@ -86,13 +87,19 @@ export const ProductList: React.FC<PropsType> = ({
             renderItem={(item) => (
                 <List.Item
                     actions={[
-                        <div onClick={addWatchList}>
-                            <IconText
-                                icon={StarOutlined}
-                                text=""
-                                key="list-vertical-star-o"
-                            />
-                        </div>
+                            <StarOutlined onClick={
+                                ()=>dispatch(addWatchList({realEstateId:item.id}))
+                            }>
+                            </StarOutlined>
+                       ,
+                            <DeleteOutlined  onClick={
+                                ()=>{
+                                    dispatch(deleteWatchList({realEstateId:item.id}))
+                                    history.push("/watchList")
+                                }}>
+                                </DeleteOutlined>
+                        ,
+                        <Link to={"/detail/" + item.id} style={{fontSize: 20, fontWeight: 400}}> Detail</Link>
                     ]}
                     extra={
                         <Image width={272} height={172} alt="image"
@@ -105,19 +112,18 @@ export const ProductList: React.FC<PropsType> = ({
                                 <Text style={{fontSize: 30, fontWeight: 400}}>
                                     {item.streetAddress}
                                 </Text>
-                                <Text
-                                    type="danger"
-                                    style={{fontSize: 30, fontWeight: 400}}
-                                >
-                                    {" "}
-                                    {item.suburb}
-                                </Text>
-                               
                             </>
                         }
                         description={item.tags}
                     />
-                    <h3>{item.title}</h3>
+                    <Text
+                        type="warning"
+                        style={{fontSize: 25, fontWeight: 400}}
+                    >{item.suburb}</Text>
+                    <Text
+                        type="danger"
+                        style={{fontSize: 25, fontWeight: 400}}
+                    > {item.title}</Text>
                 </List.Item>
             )}
         />

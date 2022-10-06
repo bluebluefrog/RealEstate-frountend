@@ -52,9 +52,6 @@ export const SearchPage: React.FC = () => {
     <>
       <Header />
       <div className={styles["page-content"]}>
-        {/*<div className={styles["product-list-container"]}>*/}
-        {/*  <FilterArea />*/}
-        {/*</div>*/}
         <div className={styles["product-list-container"]}>
           <ProductList 
             data={productList}

@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
 
     const personInfo = () => {
         if(checkLogin()){
-            history.push("/personInfo");
+            history.push("/personalInfo");
         }else{
             return;
         }

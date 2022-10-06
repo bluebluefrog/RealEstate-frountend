@@ -24,10 +24,35 @@ export const getWatchList = createAsyncThunk(
     },thunkAPI) => {
       let url = port+`watchList/getList?page=${paramaters.nextPage}&pageSize=${paramaters.pageSize}`;
       const response = await axios.get(url);
-      console.log(response.data.data)
       return {
         data: response.data.data.rows,
         pagination: response.data.data,
+      };
+    }
+);
+
+export const addWatchList = createAsyncThunk(
+    "watchList/addWatchList",
+    async (paramaters: {
+      realEstateId: string,
+    },thunkAPI) => {
+      let url = port+`watchList/addList?realEstateId=${paramaters.realEstateId}`;
+      const response = await axios.post(url);
+      return {
+        data: response.data,
+      };
+    }
+);
+
+export const deleteWatchList = createAsyncThunk(
+    "watchList/deleteWatchList",
+    async (paramaters: {
+      realEstateId: string,
+    },thunkAPI) => {
+      let url = port+`watchList/deleteList?realEstateId=${paramaters.realEstateId}`;
+      const response = await axios.post(url);
+      return {
+        data: response.data,
       };
     }
 );
@@ -50,6 +75,49 @@ export const watchListSlice = createSlice({
     [getWatchList.rejected.type]: (
       state,
       action: PayloadAction<string | null>
+    ) => {
+      //   const ddd = action.payload;
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [addWatchList.pending.type]: (state) => {
+      // return { ...state, loading: true };
+      state.loading = true;
+    },
+    [addWatchList.fulfilled.type]: (state, action) => {
+
+      if(action.payload.data.status==200){
+        alert("added to watchList")
+        state.loading = false;
+        state.error = null;
+      }else{
+        alert(action.payload.data.msg)
+        state.loading = false;
+        state.error = null;
+      }
+    },
+    [addWatchList.rejected.type]: (
+        state,
+        action: PayloadAction<string | null>
+    ) => {
+      //   const ddd = action.payload;
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    [deleteWatchList.pending.type]: (state) => {
+      // return { ...state, loading: true };
+      state.loading = true;
+    },
+    [deleteWatchList.fulfilled.type]: (state, action) => {
+        alert("deleted from watchList")
+        state.loading = false;
+        state.error = null;
+    },
+    [deleteWatchList.rejected.type]: (
+        state,
+        action: PayloadAction<string | null>
     ) => {
       //   const ddd = action.payload;
       state.loading = false;

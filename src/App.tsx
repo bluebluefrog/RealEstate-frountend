@@ -5,6 +5,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {RegisterPage} from "./pages/register";
 import {SignInPage} from "./pages/signIn";
 import {WatchListPage} from "./pages/watchList";
+import {WalletPage} from "./pages/wallet";
+import {PersonalInfo} from "./pages/personalInfo";
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
                     <Route exact path="/sign" component={SignInPage} />
                     <Route exact path="/auctionHistory" component={AuctionHistoryPage} />
                     <Route exact path="/watchList" component={WatchListPage} />
+                    <Route exact path="/wallet" component={WalletPage} />
+                    <Route exact path="/personalInfo" component={PersonalInfo} />
                     <Route render={() => <h1>404 not found!</h1>} />
                 </Switch>
             </BrowserRouter>
