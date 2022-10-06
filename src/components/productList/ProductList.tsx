@@ -37,8 +37,9 @@ const listData = (productList: Product[]) =>
           <>
               {p.suburb && <Tag color="#f50">{p.suburb} suburb</Tag>}
               {p.landArea && <Tag color="#108ee9">{p.landArea} land area </Tag>}
-              {p.realEstateArea && <Tag color="#87d068">real estate area</Tag>}
-              {p.bedrooms && <Tag color="#2db7f5">{p.bedrooms}bed rooms</Tag>}
+              {p.realEstateArea && <Tag color="#87d068">{p.realEstateArea} real estate area</Tag>}
+              {p.bedrooms && <Tag color="#2db7f5">{p.bedrooms} bed rooms</Tag>}
+              {p.bedrooms && <Tag color="pink">{p.bathrooms} bath rooms</Tag>}
           </>
       ),
       realEstateImgs: p.realEstateImgs[0].url,
@@ -47,6 +48,11 @@ const listData = (productList: Product[]) =>
       agentId: p.agentId,
 
   }));
+
+const addWatchList = () => {
+
+    alert("add")
+};
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -79,24 +85,14 @@ export const ProductList: React.FC<PropsType> = ({
             }
             renderItem={(item) => (
                 <List.Item
-                    key={item.streetAddress}
                     actions={[
-                        <IconText
-                            icon={StarOutlined}
-                            text="156"
-                            key="list-vertical-star-o"
-                        />,
-                        <IconText
-                            icon={LikeOutlined}
-                            text="156"
-                            key="list-vertical-like-o"
-                        />,
-                        <>
-                            <Rate defaultValue={3}/>
-                            <Text strong className="ant-rate-text">
-                                {item.bathrooms}
-                            </Text>
-                        </>,
+                        <div onClick={addWatchList}>
+                            <IconText
+                                icon={StarOutlined}
+                                text=""
+                                key="list-vertical-star-o"
+                            />
+                        </div>
                     ]}
                     extra={
                         <Image width={272} height={172} alt="image"
@@ -106,30 +102,22 @@ export const ProductList: React.FC<PropsType> = ({
                     <List.Item.Meta
                         title={
                             <>
-                                {item.bathrooms ? (
-                                    <>
-                                        <Text style={{fontSize: 20, fontWeight: 400}}>
-                                            {item.streetAddress}
-                                        </Text>
-                                        <Text
-                                            type="danger"
-                                            style={{fontSize: 20, fontWeight: 400}}
-                                        >
-                                            {" "}
-                                            {item.title}
-                                        </Text>
-                                    </>
-                                ) : (
-                                    <Text style={{fontSize: 20, fontWeight: 400}}>
-                                        {item.landArea}
-                                    </Text>
-                                )}
-                                <Link to={"/detail/" + item.id}> {item.title}</Link>
+                                <Text style={{fontSize: 30, fontWeight: 400}}>
+                                    {item.streetAddress}
+                                </Text>
+                                <Text
+                                    type="danger"
+                                    style={{fontSize: 30, fontWeight: 400}}
+                                >
+                                    {" "}
+                                    {item.suburb}
+                                </Text>
+                               
                             </>
                         }
                         description={item.tags}
                     />
-                    {item.streetAddress}
+                    <h3>{item.title}</h3>
                 </List.Item>
             )}
         />

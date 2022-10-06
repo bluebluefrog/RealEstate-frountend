@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
                 <Menu.Item key={1}><Link to={"/"}>Home</Link></Menu.Item>
                 <Menu.Item key={2}><Link to={"/search"}>Property</Link></Menu.Item>
                 <Menu.Item key={3} onClick={auctionHistory}>Auction History</Menu.Item>
-                <Menu.Item key={4} onClick={auctionHistory}>Watch List</Menu.Item>
+                <Menu.Item key={4} onClick={watchList}>Watch List</Menu.Item>
                 <Menu.Item key={5} onClick={wallet}>Wallet</Menu.Item>
                 <Menu.Item key={6} onClick={personInfo}>Personal Info</Menu.Item>
                 <Menu.Item key={7} onClick={createAuction}>Create Auction</Menu.Item>

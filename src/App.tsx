@@ -4,6 +4,7 @@ import {AuctionHistoryPage, DetailPage, HomePage, SearchPage} from "./pages";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {RegisterPage} from "./pages/register";
 import {SignInPage} from "./pages/signIn";
+import {WatchListPage} from "./pages/watchList";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                     <Route exact path="/register" component={RegisterPage} />
                     <Route exact path="/sign" component={SignInPage} />
                     <Route exact path="/auctionHistory" component={AuctionHistoryPage} />
+                    <Route exact path="/watchList" component={WatchListPage} />
                     <Route render={() => <h1>404 not found!</h1>} />
                 </Switch>
             </BrowserRouter>

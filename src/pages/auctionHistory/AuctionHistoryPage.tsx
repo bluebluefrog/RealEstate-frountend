@@ -1,6 +1,6 @@
 import styles from "./AuctionHistoryPage.module.css";
 import { Header, Footer} from "../../components";
-import { useParams, useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {Spin} from "antd";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
