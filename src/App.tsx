@@ -6,7 +6,9 @@ import {RegisterPage} from "./pages/register";
 import {SignInPage} from "./pages/signIn";
 import {WatchListPage} from "./pages/watchList";
 import {WalletPage} from "./pages/wallet";
-import {PersonalInfo} from "./pages/personalInfo";
+import {PersonalInfoPage} from "./pages/personalInfo";
+import {CreateAuctionPage} from "./pages/createAuction";
+import {UploadPropertyPage} from "./pages/uploadProperty";
 
 function App() {
 
@@ -22,7 +24,9 @@ function App() {
                     <Route exact path="/auctionHistory" component={AuctionHistoryPage} />
                     <Route exact path="/watchList" component={WatchListPage} />
                     <Route exact path="/wallet" component={WalletPage} />
-                    <Route exact path="/personalInfo" component={PersonalInfo} />
+                    <Route exact path="/personalInfo" component={PersonalInfoPage} />
+                    <Route exact path="/createAuction" component={CreateAuctionPage} />
+                    <Route exact path="/uploadProperty" component={UploadPropertyPage} />
                     <Route render={() => <h1>404 not found!</h1>} />
                 </Switch>
             </BrowserRouter>

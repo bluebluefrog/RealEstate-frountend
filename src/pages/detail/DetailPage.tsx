@@ -89,7 +89,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = () => {
         <Anchor className={styles["product-detail-anchor"]}>
           <Menu mode="horizontal">
             <Menu.Item key="1">
-              <Anchor.Link href="#feature" title="Auction Info"></Anchor.Link>
+              <Anchor.Link href="#feature" title="Auction UploadProperty"></Anchor.Link>
             </Menu.Item>
             <Menu.Item key="3">
               <Anchor.Link href="#fees" title="Bid Now"></Anchor.Link>

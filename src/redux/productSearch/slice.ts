@@ -38,7 +38,6 @@ export const searchProduct = createAsyncThunk(
     };
   }
 );
-
 export const productSearchSlice = createSlice({
   name: "productSearch",
   initialState,

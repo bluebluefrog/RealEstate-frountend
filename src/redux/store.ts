@@ -7,6 +7,7 @@ import {auctionHistorySlice} from "./auctionHistory/slice";
 import {watchListSlice} from "./watchList/slice";
 import {walletSlice} from "./wallet/slice";
 import {personalInfoSlice} from "./personalInfo/slice";
+import {productNoAuctionSlice} from "./auction/slice";
 
 const rootReducer = combineReducers({
     recommendProducts: recommendProductsSlice.reducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     watchList: watchListSlice.reducer,
     wallet: walletSlice.reducer,
     personalInfo: personalInfoSlice.reducer,
+    productNoAuction: productNoAuctionSlice.reducer,
 
 })
 

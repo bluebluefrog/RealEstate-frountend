@@ -7,3 +7,6 @@ export * from "./filter"
 export * from "./productList"
 export * from "./productIntro"
 export * from "./productComments"
+export * from "./info"
+export * from "./auctionForm"
+

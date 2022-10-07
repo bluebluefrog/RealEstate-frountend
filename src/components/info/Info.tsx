@@ -10,9 +10,7 @@ import {
     Radio,
     DatePicker,
     InputNumber,
-    Upload,
 } from 'antd';
-import {PlusOutlined} from "@ant-design/icons";
 import axios from "axios";
 import {port} from "../../AppConfig";
 import {useHistory} from "react-router-dom";
@@ -141,7 +139,7 @@ export const Info: React.FC<PropsType> = ({id,
                     </Form>
                 </>
                 :
-                <Descriptions title="User Info" layout="vertical" bordered
+                <Descriptions title="User UploadProperty" layout="vertical" bordered
                               extra={<Button type="primary" onClick={() => setEditForm(true)}>Edit</Button>}>
                     <Descriptions.Item label="id">{id}</Descriptions.Item>
                     <Descriptions.Item label="firstName">{firstName}</Descriptions.Item>

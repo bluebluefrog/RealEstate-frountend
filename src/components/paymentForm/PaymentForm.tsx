@@ -1,12 +1,10 @@
 import React from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import {Button, Checkbox, Form, Input} from "antd";
-import styles from "./PaymentForm.module.css";
-import {useDispatch} from "react-redux";
+import {Button,Form, Input} from "antd";
 import axios from "axios";
 import {port} from "../../AppConfig";
-import {useHistory} from "react-router-dom";
+import {createBrowserHistory} from "history";
 
 const layout = {
   labelCol: { span: 8 },
@@ -22,7 +20,7 @@ const onFinish = async (values: any) => {
     console.log(values.number)
     let response = await axios.post(port + `wallet/addWallet?bankAccount=${values.cardNumber}`);
     if (response.data.status == 200) {
-      window.location.reload()
+      alert("added");
     } else {
       alert(response.data.msg);
     }
@@ -44,6 +42,7 @@ export class PaymentForm extends React.Component {
     name: "",
     number: "",
   };
+
 
   handleInputFocus = (e) => {
     this.setState({ focus: e.target.name });

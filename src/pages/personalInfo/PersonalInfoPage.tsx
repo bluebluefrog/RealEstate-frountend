@@ -12,7 +12,7 @@ interface MatchParams {
   keywords: string;
 }
 
-export const PersonalInfo: React.FC = () => {
+export const PersonalInfoPage: React.FC = () => {
   
   const loading = useSelector((state) => state.personalInfo.loading);
   const error = useSelector((state) => state.personalInfo.error);
