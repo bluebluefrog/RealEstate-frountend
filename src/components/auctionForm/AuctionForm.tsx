@@ -135,6 +135,7 @@ export const AuctionForm: React.FC<PropsType> = ({data}) => {
                            name="auctionDetail">
                     <TextArea rows={4} required/>
                 </Form.Item>
+
                 <Form.Item wrapperCol={{offset: 4, span: 16}}>
                     <Button type="primary" htmlType="submit">
                         Create

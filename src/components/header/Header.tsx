@@ -10,9 +10,6 @@ import { useSelector } from "../../redux/hooks";
 
 export const Header: React.FC = () => {
     const history = useHistory();
-    const location = useLocation();
-    const params = useParams();
-    const match = useRouteMatch();
     const dispatch = useDispatch();
     let userInfo = useSelector(state => state.user.userInfo);
 
@@ -69,28 +66,20 @@ export const Header: React.FC = () => {
         }
     };
 
-    const home = () => {
-        if(checkLogin()){
-            history.push("/");
-        }else{
-            return;
-        }
-    };
-
-    const search = () => {
-        if(checkLogin()){
-            history.push("/search");
-        }else{
-            return;
-        }
-    };
-
     const uploadProperty = () => {
         if(checkLogin()){
             history.push("/uploadProperty");
         }else{
             return;
         }
+    };
+
+    const home = () => {
+        history.push("/");
+    };
+
+    const search = () => {
+        history.push("/search");
     };
 
     return (

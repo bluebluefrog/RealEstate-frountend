@@ -16,3 +16,8 @@
     box-sizing: border-box;
     white-space: pre-wrap;
 }
+
+.menu {
+    padding-bottom: 30px;
+    background-color: white;
+}
