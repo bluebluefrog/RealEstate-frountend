@@ -1,6 +1,6 @@
 import styles from "./bidInfo.module.css";
 import React, {useState} from "react";
-import {Button, Divider, Form, InputNumber, List, Select, Table} from "antd";
+import {Button, Divider, Form, InputNumber, List, Table} from "antd";
 import { ColumnsType } from "antd/es/table";
 import {RiseOutlined} from "@ant-design/icons";
 import {SizeType} from "antd/es/config-provider/SizeContext";
@@ -60,13 +60,14 @@ export const BidInfo: React.FC<PropsType> = ({
                                                  auctionSponsorId,
                                                  securityDeposit,
                                                  appraisedValue,
-                                                 auctionRecordList
+                                                 auctionRecordList,
                                              }) => {
+
 
     const [size, setSize] = useState<SizeType>('large');
     const history = useHistory();
 
-    const auctionEnd=new Date(auctionDuration)
+    const auctionEnd = new Date(auctionDuration)
 
     const deadline = Date.now() + (auctionEnd.getTime() - Date.now()); // Moment is also OK
 
@@ -76,7 +77,7 @@ export const BidInfo: React.FC<PropsType> = ({
             let response = await axios.post(port + `auction/createAuctionRecord?auctionId=${id}&bidPrice=${values.bidPrice}`);
 
             if (response.data.status == 200) {
-                history.push("/");
+                history.push(`/auctionHistory`)
             } else {
                 alert(response.data.msg);
             }

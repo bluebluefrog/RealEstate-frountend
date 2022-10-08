@@ -69,6 +69,22 @@ export const Header: React.FC = () => {
         }
     };
 
+    const home = () => {
+        if(checkLogin()){
+            history.push("/");
+        }else{
+            return;
+        }
+    };
+
+    const search = () => {
+        if(checkLogin()){
+            history.push("/search");
+        }else{
+            return;
+        }
+    };
+
     const uploadProperty = () => {
         if(checkLogin()){
             history.push("/uploadProperty");
@@ -114,8 +130,8 @@ export const Header: React.FC = () => {
                               onSearch={(keywords) => history.push("/search/" + keywords)}/>
             </Layout.Header>
             <Menu mode={"horizontal"} className={styles['main-menu']}>
-                <Menu.Item key={1}><Link to={"/"}>Home</Link></Menu.Item>
-                <Menu.Item key={2}><Link to={"/search"}>Property</Link></Menu.Item>
+                <Menu.Item key={1} onClick={home}>Home</Menu.Item>
+                <Menu.Item key={2} onClick={search}>Property</Menu.Item>
                 <Menu.Item key={3} onClick={auctionHistory}>Auction History</Menu.Item>
                 <Menu.Item key={4} onClick={watchList}>Watch List</Menu.Item>
                 <Menu.Item key={5} onClick={wallet}>Wallet</Menu.Item>

@@ -1,15 +1,11 @@
 import React, {useEffect} from "react";
 import {
-  Header,
-  Footer,
   Carousel,
   SideMenu,
   ProductCollection,
 } from "../../components";
 import { Row, Col, Typography, Spin } from "antd";
-import sideImage from "../../assets/images/sider_2019_12-09.png";
-import sideImage2 from "../../assets/images/sider_2019_02-04.png";
-import sideImage3 from "../../assets/images/sider_2019_02-04-2.png";
+import sideImage from "../../assets/images/rea-logo-for-social.png";
 import {getRecommendProducts} from "../../redux/recommendProducts/slice";
 import { MainLayout } from "../../layouts/mainLayout";
 import { useSelector } from "../../redux/hooks";
@@ -67,7 +63,7 @@ export const HomePage: React.FC = () => {
                     <SideMenu/>
                 </Col>
                 <Col span={18}>
-                    <Carousel/>
+                    <Carousel />
                 </Col>
             </Row>
             <ProductCollection
@@ -85,7 +81,7 @@ export const HomePage: React.FC = () => {
                         popular
                     </Typography.Title>
                 }
-                sideImage={sideImage2}
+                sideImage={sideImage}
                 products={propertyList.rows.length < 20 ? propertyList.rows.slice(0, 10) : propertyList.rows.slice(11, 21)}
             />
             <ProductCollection
@@ -94,7 +90,7 @@ export const HomePage: React.FC = () => {
                         explore
                     </Typography.Title>
                 }
-                sideImage={sideImage3}
+                sideImage={sideImage}
                 products={propertyList.rows.length < 30 ? propertyList.rows.slice(0, 10) : propertyList.rows.slice(22, 32)}
             />
         </MainLayout>
