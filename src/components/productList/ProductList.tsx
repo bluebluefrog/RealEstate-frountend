@@ -4,6 +4,7 @@ import {List, Space, Image, Tag, Typography} from "antd";
 import {DeleteOutlined, StarOutlined} from "@ant-design/icons";
 import {addWatchList, deleteWatchList} from "../../redux/watchList/slice";
 import { useDispatch } from "react-redux";
+import {useSelector} from "../../redux/hooks";
 
 const { Text } = Typography;
 
@@ -64,7 +65,7 @@ export const ProductList: React.FC<PropsType> = ({
 }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    let userInfo = useSelector(state => state.user.userInfo);
 
     const products = listData(data);
 
@@ -88,7 +89,9 @@ export const ProductList: React.FC<PropsType> = ({
                 <List.Item
                     actions={[
                             <StarOutlined onClick={
-                                ()=>dispatch(addWatchList({realEstateId:item.id}))
+                                ()=>{
+                                dispatch(addWatchList({realEstateId:item.id}))
+                                }
                             }>
                             </StarOutlined>
                        ,

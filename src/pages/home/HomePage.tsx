@@ -11,6 +11,7 @@ import { MainLayout } from "../../layouts/mainLayout";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
+import {getWatchList} from "../../redux/watchList/slice";
 
 interface MatchParams {
     keywords: string;
@@ -30,7 +31,6 @@ export const HomePage: React.FC = () => {
     useEffect(()=>{
         dispatch(getRecommendProducts({page: 1, pageSize: 10, keyWord:keywords}));
     },[location])
-
 
     if (loading) {
         return (

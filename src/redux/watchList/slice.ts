@@ -68,6 +68,7 @@ export const watchListSlice = createSlice({
     },
     [getWatchList.fulfilled.type]: (state, action) => {
       state.data = action.payload.data;
+      console.log(2)
       state.pagination = action.payload.pagination;
       state.loading = false;
       state.error = null;
@@ -86,7 +87,7 @@ export const watchListSlice = createSlice({
       state.loading = true;
     },
     [addWatchList.fulfilled.type]: (state, action) => {
-
+      console.log(1)
       if(action.payload.data.status==200){
         alert("added to watchList")
         state.loading = false;
@@ -111,9 +112,15 @@ export const watchListSlice = createSlice({
       state.loading = true;
     },
     [deleteWatchList.fulfilled.type]: (state, action) => {
+      if(action.payload.data.status==200) {
         alert("deleted from watchList")
         state.loading = false;
         state.error = null;
+      }else{
+        alert(action.payload.data.msg)
+        state.loading = false;
+        state.error = null;
+    }
     },
     [deleteWatchList.rejected.type]: (
         state,
