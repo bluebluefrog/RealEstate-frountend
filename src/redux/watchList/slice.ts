@@ -31,31 +31,31 @@ export const getWatchList = createAsyncThunk(
     }
 );
 
-export const addWatchList = createAsyncThunk(
-    "watchList/addWatchList",
-    async (paramaters: {
-      realEstateId: string,
-    },thunkAPI) => {
-      let url = port+`watchList/addList?realEstateId=${paramaters.realEstateId}`;
-      const response = await axios.post(url);
-      return {
-        data: response.data,
-      };
-    }
-);
-
-export const deleteWatchList = createAsyncThunk(
-    "watchList/deleteWatchList",
-    async (paramaters: {
-      realEstateId: string,
-    },thunkAPI) => {
-      let url = port+`watchList/deleteList?realEstateId=${paramaters.realEstateId}`;
-      const response = await axios.post(url);
-      return {
-        data: response.data,
-      };
-    }
-);
+// export const addWatchList = createAsyncThunk(
+//     "watchList/addWatchList",
+//     async (paramaters: {
+//       realEstateId: string,
+//     },thunkAPI) => {
+//       let url = port+`watchList/addList?realEstateId=${paramaters.realEstateId}`;
+//       const response = await axios.post(url);
+//       return {
+//         data: response.data,
+//       };
+//     }
+// );
+//
+// export const deleteWatchList = createAsyncThunk(
+//     "watchList/deleteWatchList",
+//     async (paramaters: {
+//       realEstateId: string,
+//     },thunkAPI) => {
+//       let url = port+`watchList/deleteList?realEstateId=${paramaters.realEstateId}`;
+//       const response = await axios.post(url);
+//       return {
+//         data: response.data,
+//       };
+//     }
+// );
 
 export const watchListSlice = createSlice({
   name: "watchList",
@@ -81,54 +81,54 @@ export const watchListSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-
-    [addWatchList.pending.type]: (state) => {
-      // return { ...state, loading: true };
-      state.loading = true;
-    },
-    [addWatchList.fulfilled.type]: (state, action) => {
-      console.log(1)
-      if(action.payload.data.status==200){
-        alert("added to watchList")
-        state.loading = false;
-        state.error = null;
-      }else{
-        alert(action.payload.data.msg)
-        state.loading = false;
-        state.error = null;
-      }
-    },
-    [addWatchList.rejected.type]: (
-        state,
-        action: PayloadAction<string | null>
-    ) => {
-      //   const ddd = action.payload;
-      state.loading = false;
-      state.error = action.payload;
-    },
-
-    [deleteWatchList.pending.type]: (state) => {
-      // return { ...state, loading: true };
-      state.loading = true;
-    },
-    [deleteWatchList.fulfilled.type]: (state, action) => {
-      if(action.payload.data.status==200) {
-        alert("deleted from watchList")
-        state.loading = false;
-        state.error = null;
-      }else{
-        alert(action.payload.data.msg)
-        state.loading = false;
-        state.error = null;
-    }
-    },
-    [deleteWatchList.rejected.type]: (
-        state,
-        action: PayloadAction<string | null>
-    ) => {
-      //   const ddd = action.payload;
-      state.loading = false;
-      state.error = action.payload;
-    },
+    //
+    // [addWatchList.pending.type]: (state) => {
+    //   // return { ...state, loading: true };
+    //   state.loading = true;
+    // },
+    // [addWatchList.fulfilled.type]: (state, action) => {
+    //   console.log(1)
+    //   if(action.payload.data.status==200){
+    //     alert("added to watchList")
+    //     state.loading = false;
+    //     state.error = null;
+    //   }else{
+    //     alert(action.payload.data.msg)
+    //     state.loading = false;
+    //     state.error = null;
+    //   }
+    // },
+    // [addWatchList.rejected.type]: (
+    //     state,
+    //     action: PayloadAction<string | null>
+    // ) => {
+    //   //   const ddd = action.payload;
+    //   state.loading = false;
+    //   state.error = action.payload;
+    // },
+    //
+    // [deleteWatchList.pending.type]: (state) => {
+    //   // return { ...state, loading: true };
+    //   state.loading = true;
+    // },
+    // [deleteWatchList.fulfilled.type]: (state, action) => {
+    //   if(action.payload.data.status==200) {
+    //     alert("deleted from watchList")
+    //     state.loading = false;
+    //     state.error = null;
+    //   }else{
+    //     alert(action.payload.data.msg)
+    //     state.loading = false;
+    //     state.error = null;
+    // }
+    // },
+    // [deleteWatchList.rejected.type]: (
+    //     state,
+    //     action: PayloadAction<string | null>
+    // ) => {
+    //   //   const ddd = action.payload;
+    //   state.loading = false;
+    //   state.error = action.payload;
+    // },
   },
 });

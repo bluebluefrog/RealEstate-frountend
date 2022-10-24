@@ -2,9 +2,11 @@ import React from "react";
 import {Link, useHistory} from "react-router-dom";
 import {List, Space, Image, Tag, Typography} from "antd";
 import {DeleteOutlined, StarOutlined} from "@ant-design/icons";
-import {addWatchList, deleteWatchList} from "../../redux/watchList/slice";
+// import {addWatchList, deleteWatchList} from "../../redux/watchList/slice";
 import { useDispatch } from "react-redux";
 import {useSelector} from "../../redux/hooks";
+import axios from "axios";
+import {port} from "../../AppConfig";
 
 const { Text } = Typography;
 
@@ -67,6 +69,39 @@ export const ProductList: React.FC<PropsType> = ({
     const history = useHistory();
     let userInfo = useSelector(state => state.user.userInfo);
 
+    const onAdd = async (id: any) => {
+        console.log("Success:", id);
+        try {
+            let response = await axios.post( port+`watchList/addList?realEstateId=${id}`);
+            if (response.data.status == 200) {
+                alert("add success！");
+                history.push("/watchList");
+            } else {
+                alert(response.data.msg);
+            }
+        } catch (error) {
+            alert(error)
+            alert("add fail！");
+        }
+    };
+
+    const onDelete = async (id: any) => {
+        console.log("Success:", id);
+        try {
+            let response = await axios.post(port+`watchList/deleteList?realEstateId=${id}`);
+
+            if (response.data.status == 200) {
+                alert("delete success！");
+                history.push("/watchList");
+            } else {
+                alert(response.data.msg);
+            }
+        } catch (error) {
+            alert(error)
+            alert("delete fail！");
+        }
+    };
+
     const products = listData(data);
 
     return (
@@ -90,15 +125,17 @@ export const ProductList: React.FC<PropsType> = ({
                     actions={[
                             <StarOutlined onClick={
                                 ()=>{
-                                dispatch(addWatchList({realEstateId:item.id}))
+                                    onAdd(item.id)
+                                // dispatch(addWatchList({realEstateId:item.id}))
                                 }
                             }>
                             </StarOutlined>
                        ,
                             <DeleteOutlined  onClick={
                                 ()=>{
-                                    dispatch(deleteWatchList({realEstateId:item.id}))
-                                    history.push("/watchList")
+                                    onDelete(item.id)
+                                    // dispatch(deleteWatchList({realEstateId:item.id}))
+                                    // history.push("/watchList")
                                 }}>
                                 </DeleteOutlined>
                         ,
