@@ -139,7 +139,7 @@ export const Info: React.FC<PropsType> = ({id,
                     </Form>
                 </>
                 :
-                <Descriptions title="User UploadProperty" layout="vertical" bordered
+                <Descriptions title="User" layout="vertical" bordered
                               extra={<Button type="primary" onClick={() => setEditForm(true)}>Edit</Button>}>
                     <Descriptions.Item label="id">{id}</Descriptions.Item>
                     <Descriptions.Item label="firstName">{firstName}</Descriptions.Item>
